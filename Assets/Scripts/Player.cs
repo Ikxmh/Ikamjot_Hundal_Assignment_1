@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float jumpForce = 200.0f;
+    [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private bool isGrounded;
     private float yLevel = 0;
      private float movement;
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
     {
         Move();
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetAxisRaw("Jump") > 0)
         {
             Jump();
         }
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         movement = Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime * speed;
-        transform.Translate(movement, 0, 0);
+        rb.velocity = new Vector2(movement * speed, rb.velocity.y);
     }
 
     private void Jump()
