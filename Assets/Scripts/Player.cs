@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce = 200.0f;
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private bool isGrounded;
-    private float yLevel = 0;
      private float movement;
 
     private Rigidbody2D rb;
