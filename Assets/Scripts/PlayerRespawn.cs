@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerRespawn : MonoBehaviour
 {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-            SceneManager.LoadScene(0);   
+        if (other.gameObject.tag == "Trap")
+        {
+            SceneManager.LoadScene(0);
+        }  
     }
 }
