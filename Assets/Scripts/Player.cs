@@ -8,36 +8,42 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpForce = 200.0f;
     [SerializeField] private float groundCheckRadius = 0.15f;
-    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isGrounded = false;
     [SerializeField] private Transform groundCheckPos;
     [SerializeField] private LayerMask whatisGround;
 
      private float movement;
 
     private Rigidbody2D rb;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0.0f);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+       // Move();
         isGrounded = GroundCheck();
 
         if (isGrounded && Input.GetAxisRaw("Jump") > 0)
         {
             Jump();
         }
-        rb.velocity = new Vector2(movement * speed, rb.velocity.y);
+        //rb.velocity = new Vector2(movement * speed, rb.velocity.y);
+
+        anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetBool("isGrounded", isGrounded);
     }
 
-    private void Move()
+   /* private void Move()
     {
         movement = Input.GetAxisRaw("Horizontal"); 
-    }
+    } */
 
     private void Jump()
     {
@@ -46,16 +52,18 @@ public class Player : MonoBehaviour
     }
 
 
+
+
     private bool GroundCheck()
     {
         return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, whatisGround);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+   /* private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Trap")
         {
             Destroy(this.gameObject);
         }
-    }
+    } */
 }

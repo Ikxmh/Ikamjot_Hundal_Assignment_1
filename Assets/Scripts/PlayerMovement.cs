@@ -13,17 +13,20 @@ public class PlayerMovement : MonoBehaviour
 
     // detecting the ground variables 
     [SerializeField] private float groundCheckRadius = 0.15f;
-    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isGrounded = false;
     [SerializeField] private Transform groundCheckPos;
     [SerializeField] private LayerMask whatisGround;
 
     private float movement;
 
+    // component calling variables 
     private Rigidbody2D rb;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,11 +63,4 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, whatisGround);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Trap")
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

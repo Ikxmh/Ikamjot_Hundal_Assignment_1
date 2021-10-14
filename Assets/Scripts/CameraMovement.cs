@@ -16,11 +16,6 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraFollows()
     {
-        if (player.position.x > moveThreshold.position.x)
-        {
-            transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
-        }
+        
     }
-
-
 }
