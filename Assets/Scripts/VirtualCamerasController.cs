@@ -8,6 +8,8 @@ public class VirtualCamerasController : MonoBehaviour
     [SerializeField] private List<GameObject> virtualCameras;
 
     // Start is called before the first frame update
+
+    // get the list of the virtual cameras
     void Start()
     {
         virtualCameras.Clear();
@@ -16,7 +18,7 @@ public class VirtualCamerasController : MonoBehaviour
             virtualCameras.Add(transform.GetChild(i).gameObject);
         }
     }
-
+    // setting up the transitions between cameras 
     public void TransitionCameraTo(GameObject cameraTransitionTo)
     {
         foreach(GameObject camera in virtualCameras)

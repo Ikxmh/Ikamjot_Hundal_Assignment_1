@@ -14,16 +14,23 @@ public class PlayerRespawn : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    // deth and respawn :)
     private void OnCollisionEnter2D(Collision2D other)
     {    
         if (other.gameObject.tag == "Trap")
         {
             anim.SetBool("isDead", true);
+            CinemachineShake.Instance.ShakeCamera(6f, .1f);
             StartCoroutine(WaitForSceneLoad());
+        }
+        else if(other.gameObject.tag == "FinishLine")
+        {
+            SceneManager.LoadScene(0);
         }
         
     }
 
+    // Corountine to reload the scene 
     private IEnumerator WaitForSceneLoad()
     {
         yield return new WaitForSeconds(animLength);

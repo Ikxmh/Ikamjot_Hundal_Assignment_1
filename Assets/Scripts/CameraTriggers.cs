@@ -9,6 +9,7 @@ public class CameraTriggers : MonoBehaviour
 
     public VirtualCamerasController vCamController;
 
+    // transitions into
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -17,6 +18,7 @@ public class CameraTriggers : MonoBehaviour
         }
     }
 
+    // transitions out of 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
