@@ -20,6 +20,7 @@ public class PlayerRespawn : MonoBehaviour
         if (other.gameObject.tag == "Trap")
         {
             anim.SetBool("isDead", true);
+            SoundManager.PlaySound("Game_Over");
             CinemachineShake.Instance.ShakeCamera(6f, .1f);
             StartCoroutine(WaitForSceneLoad());
         }
@@ -27,7 +28,6 @@ public class PlayerRespawn : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
-        
     }
 
     // Corountine to reload the scene 

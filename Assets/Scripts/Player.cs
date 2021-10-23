@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded && Input.GetAxisRaw("Jump") > 0)
         {
+            SoundManager.PlaySound("player-jump");
             Jump();
         }
         //rb.velocity = new Vector2(movement * speed, rb.velocity.y);
